@@ -1,0 +1,47 @@
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1"
+    uk-slider="clsActivated: uk-transition-active; center: true; autoplay: true; autoplay-interval: 3500; pause-on-hover: true;">
+    <ul class="uk-slider-items uk-grid-match" uk-height-viewport="offset-top: true; offset-bottom: 15">
+        {{ range first 5 (where .Site.Pages "Params.featured" true)  }}
+        <li class="uk-width-3-4">
+            <a href="#" class="uk-cover-container uk-link-toggle">
+                <img src="{{ .Params.thumbnail }}" alt="" uk-cover uk-slider-parallax="grayscale: 100,0,100">
+                <div class="uk-overlay uk-overlay-primary uk-position-cover" uk-slider-parallax="opacity: 0,1,0"></div>
+                <div class="uk-position-center-left">
+                    <div class="uk-text-center@m uk-container">
+                        <p class="uk-margin-remove uk-transition-slide-bottom">
+                            <a class="uk-text-capitalize uk-button uk-button-text" href="{{ .RelPermalink }}">
+                                <i class="fas fa-hashtag"></i>
+                                {{ .Params.categories }}
+                            </a>
+                        </p>
+                        <h2 class="uk-text-bold uk-text-capitalize uk-margin-remove uk-transition-fade">
+                            <a href="{{ .Permalink }}" class="uk-link-heading">
+                                {{ .Title }}
+                            </a>
+                        </h2>
+                        <p class="uk-text-muted uk-margin-remove uk-transition-slide-top">
+                            <i class="far fa-calendar-alt"></i>
+                            {{ .Date.Format (.Site.Params.dateFormat | default "2 January, 2006" ) }}
+                        </p>
+                        <p class="uk-visible@m uk-transition-fade">
+                            {{ .Summary | markdownify }}
+                        </p>
+                        <p class="uk-text-capitalize uk-margin-small uk-transition-slide-left-small">
+                            <a class="uk-button uk-button-text uk-text-capitalize" href="{{ .Permalink }}">
+                                <i class="fas fa-arrow-circle-right"></i>
+                                Selengkapnya
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {{ end }}
+    </ul>
+    <a class="uk-position-center-left uk-text-emphasis uk-animation-slide-right" href="#" uk-slidenav-previous
+        uk-slider-item="previous">
+    </a>
+    <a class="uk-position-center-right uk-text-emphasis uk-animation-slide-left" href="#" uk-slidenav-next
+        uk-slider-item="next">
+    </a>
+</div>

@@ -1,0 +1,82 @@
+<div class="uk-section uk-section-xsmall uk-section-muted uk-visible@m">
+    <div class="uk-container uk-container-large">
+        <a class="uk-navbar-item uk-logo uk-animation-fade uk-text-primary uk-margin-remove" href="#">
+            <img width="72" height="72" alt="" uk-img="data-src:logo.png" uk-svg>
+        </a>
+        <h1
+            class="uk-text-center uk-animation-slide-bottom uk-text-uppercase uk-text-bold uk-text-lead uk-margin-remove">
+            <a href="/" class="uk-logo uk-text-bold">cinemaillusion</a>
+        </h1>
+        <blockquote class="uk-text-center uk-margin-remove uk-animation-fade uk-text-uppercase uk-text-meta">Nalar
+            kritis rasional negatif
+        </blockquote>
+    </div>
+</div>
+<hr class="uk-background-muted uk-text-primary uk-margin-remove">
+<div class="uk-section uk-section-muted uk-padding-remove-vertical">
+    <div class="uk-container uk-container-large">
+        <nav class="uk-navbar-container" uk-navbar>
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-toggle uk-animation-slide-left uk-hidden@m" href="#menu" uk-toggle>
+                    <i class="fas fa-bars" style="font-size: 1.5em; color: black;"></i>
+                </a>
+                <ul class="uk-navbar-nav  uk-animation-slide-left-small uk-visible@m">
+                    {{ $currentPage := . }}
+                    {{ range .Site.Menus.main }}
+                    <li class="{{ if $currentPage.IsMenuCurrent "main" . }}uk-active{{ end }}">
+                        <a href="{{ .URL }}">
+                            <span class="uk-margin-small-right">
+                                {{ .Pre }}
+                            </span>
+                            {{ .Name }}
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            <div class="uk-navbar-center">
+
+                <a class="uk-navbar-item uk-logo uk-animation-fade uk-text-primary uk-hidden@m" href="#">
+                    <img width="48" height="48" alt="" uk-img="data-src:/logo.svg" uk-svg>
+                </a>
+            </div>
+            <div class="uk-navbar-right">
+                <a class="uk-navbar-toggle uk-animation-slide-right" href="#">
+                    <i class="fas fa-search" style="font-size: 1.5em; color: black;"></i>
+                </a>
+            </div>
+        </nav>
+    </div>
+</div>
+<hr class="uk-background-muted uk-text-primary uk-margin-remove">
+<div id="menu" uk-offcanvas="overlay: true; mode: push;">
+    <div class="uk-offcanvas-bar">
+        <ul class="uk-nav uk-nav-default">
+            <li class="uk-nav-header uk-text-bold uk-animation-slide-left-small">menu</li>
+            {{ $currentPage := . }}
+            {{ range .Site.Menus.main }}
+            <li
+                class="uk-text-capitalize uk-animation-slide-left-medium{{ if $currentPage.IsMenuCurrent "main" . }}uk-active{{ end }}">
+                <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
+            <li class="uk-nav-divider"></li>
+            <li class="uk-nav-header uk-text-bold uk-animation-slide-left-small">media sosial</li>
+            <p class="uk-margin-small">
+                <a href="" class="uk-animation-slide-left uk-margin-small-right">
+                    <i class="fab fa-twitter" style="font-size: 1.5em; color: #1DA1F2;"></i>
+                </a>
+                <a href="" class="uk-animation-slide-left uk-margin-small-right">
+                    <i class="fab fa-facebook" style="font-size: 1.5em; color: #4267B2;"></i>
+                </a>
+                <a href="" class="uk-animation-slide-left uk-margin-small-right">
+                    <i class="fab fa-instagram" style="font-size: 1.5em; color: #C13584;"></i>
+                </a>
+                <a href="" class="uk-animation-slide-left uk-margin-small-right">
+                    <i class="fab fa-youtube" style="font-size: 1.5em; color: #FF0000;"></i>
+                </a>
+            </p>
+        </ul>
+
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<h2 class="uk-text-capitalize uk-heading-line uk-margin-medium uk-animation-slide-small">
+    <span class="uk-animation-slide-right">terkini</span>
+</h2>
+{{ range first 6 (where .Paginator.Pages "Params.featured" false)  }}
+<div class="uk-card uk-card-default uk-grid-collapse uk-card-hover uk-child-width-1-2@s uk-margin-medium uk-link-toggle"
+    uk-grid>
+    <a href="{{ .Permalink }}" class="uk-card-media-left uk-cover-container">
+        <img src="{{ .Params.thumbnail }}" alt="" uk-cover>
+        <canvas width="600" height="400"></canvas>
+    </a>
+    <div>
+        <div class="uk-card-body">
+            <span class="uk-label uk-text-capitalize">
+                <i class="fas fa-hashtag"></i>
+                <a class="uk-link-reset" href="{{ .RelPermalink }}">
+                    {{ .Params.categories }}
+                </a>
+            </span>
+            <h3 class="uk-card-title uk-link-heading uk-text-bold uk-text-capitalize uk-margin-remove">
+                <a href="{{ .Permalink }}">
+                    {{ .Title }}
+                </a>
+            </h3>
+            <p class="uk-text-muted uk-margin-remove">
+                <i class="far fa-calendar-alt"></i>
+                {{ .Date.Format (.Site.Params.dateFormat | default "2 January, 2006" ) }}
+            </p>
+            <p>
+                {{ .Summary | markdownify }}
+            </p>
+            <div class="uk-child-width-1-2 uk-grid-match uk-grid-collapse" uk-grid>
+                <div class="uk-text-left">
+                    <p class="uk-margin-remove uk-text-capitalize">
+                        <a class="uk-button uk-button-text uk-text-capitalize" href="#">
+                            <i class="fas fa-arrow-circle-right"></i>
+                            Selengkapnya
+                        </a>
+                    </p>
+                </div>
+                <div class="uk-text-right">
+                    <p class="uk-margin-remove uk-text-capitalize uk-text-muted">
+                        <i class="far fa-clock"></i>
+                        {{ .ReadingTime }} Menit
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+
+{{ $paginator := $.Paginator }}
+{{ if gt $paginator.TotalPages 1 }}
+<ul class="uk-pagination uk-flex uk-flex-center uk-margin-large-top" uk-margin>
+    {{ if $paginator.HasPrev }}
+    <li><a href="{{ $paginator.Prev.URL }}"><span uk-pagination-previous></span></a></li>
+    {{ end }}
+    {{ range $paginator.Pagers }}
+    {{ if eq . $paginator }}
+    <li class="uk-active"><span>{{ .PageNumber }}</span></li>
+    {{ else }}
+    <li><a href="{{ .URL }}">{{ .PageNumber }}</a></li>
+    {{ end }}
+    {{ end }}
+    {{ if $paginator.HasNext }}
+    <li><a href="{{ $paginator.Next.URL }}"><span uk-pagination-next></span></a></li>
+    {{ end }}
+</ul>
+{{ end }}

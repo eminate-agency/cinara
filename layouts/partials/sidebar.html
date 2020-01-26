@@ -1,0 +1,62 @@
+<h2 class="uk-text-capitalize uk-heading-line uk-margin-medium uk-animation-slide-small">
+    <span class="uk-animation-slide-right">Label</span>
+</h2>
+<p>
+    {{ range .Site.Taxonomies.tags }}
+    <a class="uk-text-capitalize" href="{{ .Page.Permalink }}">
+        <i class="fas fa-tag"></i>
+        {{ .Page.Title }}
+    </a>
+    <span class="uk-margin-small-right">
+        ({{ .Count }})
+    </span>
+    {{ end }}
+</p>
+<h2 class="uk-text-capitalize uk-heading-line uk-margin-medium uk-animation-slide-small">
+    <span class="uk-animation-slide-right">rekomendasi</span>
+</h2>
+{{ range first 3 (shuffle ((where .Site.Pages "Params.featured" false)))  }}
+<div class="uk-card uk-grid-collapse uk-card-muted uk-card-small uk-child-width-1-2@s uk-margin-medium uk-link-toggle"
+    uk-grid>
+    <a href="{{ .Permalink }}" class="uk-card-media-left uk-cover-container">
+        <img src="{{ .Params.thumbnail }}" alt="" uk-cover>
+        <canvas width="300" height="200"></canvas>
+    </a>
+    <div>
+        <div class="uk-card-body">
+            <span class="uk-label uk-text-capitalize">
+                <i class="fas fa-hashtag"></i>
+                {{ $taxo := "tags" }}
+                {{ range .Param $taxo }}
+                {{ $name := . }}
+                {{ with $.Site.GetPage (printf "/%s/%s" $taxo ($name | urlize)) }}
+                <a class="uk-link-reset" href="{{ .RelPermalink }}">
+                    {{ $name }}
+                </a>
+                {{ end }}
+                {{ end }}
+            </span>
+            <p class="uk-link-heading uk-text-bold uk-text-capitalize uk-margin-remove uk-text-large">
+                <a href="{{ .Permalink }}">
+                    {{ .Name }}
+                </a>
+            </p>
+            <p class="uk-text-muted uk-margin-remove uk-text-small">
+                <i class="far fa-calendar-alt"></i>
+                {{ .Date.Format (.Site.Params.dateFormat | default "2 January, 2006" ) }}
+            </p>
+        </div>
+    </div>
+</div>
+{{ end }}
+<h2 class="uk-text-capitalize uk-heading-line uk-margin-medium-top uk-animation-slide-small">
+    <span class="uk-animation-slide-right">tentang</span>
+</h2>
+<div class="">
+    <div class="">
+        <p class="">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, quas totam. Maiores, doloribus vel
+            recusandae temporibus id quisquam. Ducimus dolorem at cumque natus aperiam ex.
+        </p>
+    </div>
+</div>
